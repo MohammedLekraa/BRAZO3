@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Braç Robòtic | ML Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js per a les gràfiques interactives -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- BARRA DE PROGRÉS DE LECTURA -->
+  <div id="progress-bar"></div>
+
+  <!-- NAVBAR SUPERIOR -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">ML // PORTFOLIO</a>
+    <div class="nav-controls">
+      <button id="theme-toggle" class="nav-btn" title="Canviar tema">
+        <span id="theme-icon">🌙</span> MODO OSCURO
+      </button>
+      <a href="index.html" class="nav-btn">&larr; BACK TO PROJECTS</a>
+    </div>
+  </nav>
+
+  <!-- CONTENIDOR PRINCIPAL DE DUES COLUMNES -->
+  <div class="project-layout">
+    
+    <!-- BARRA LATERAL (SIDEBAR) AMB LÍNIA DIVISÒRIA -->
+    <aside class="project-sidebar">
+      <div class="sidebar-sticky">
+        <span class="mono-label">PROJECT NAVIGATION</span>
+        <ul class="sidebar-menu">
+          <li><a href="#introduccio" class="sidebar-link active"><span class="step-num">01</span> INTRODUCCIÓ</a></li>
+          <li><a href="#hotspots-sec" class="sidebar-link"><span class="step-num">02</span> HOTSPOTS & CAD</a></li>
+          <li><a href="#comparador" class="sidebar-link"><span class="step-num">03</span> COMPARADOR PCB</a></li>
+          <li><a href="#telemetria" class="sidebar-link"><span class="step-num">04</span> TELEMETRIA</a></li>
+          <li><a href="#codi" class="sidebar-link"><span class="step-num">05</span> FIRMWARE</a></li>
+          <li><a href="#bom" class="sidebar-link"><span class="step-num">06</span> TABLA BOM</a></li>
+          <li><a href="#reptes" class="sidebar-link"><span class="step-num">07</span> REPTES I SOLUCIONS</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- CONTINGUT DEL PROJECTE (COLUMNA DRETA) -->
+    <main class="project-content">
+      
+      <!-- 01. INTRODUCCIÓ -->
+      <section id="introduccio" class="project-section reveal">
+        <span class="mono-label">PROJECT_01 // EMBEDDED & HARDWARE</span>
+        <h1 class="project-main-title">
+          Sensorized Glove Controlled Robotic Arm
+          <button class="anchor-btn" onclick="copyAnchor('#introduccio')" title="Copiar enllaç">#</button>
+        </h1>
+        <p class="project-subtitle">Embedded robotic system capable of reproducing human hand and wrist movements in real-time using flex sensors, an inertial measurement unit, microcontrollers and servo actuation.</p>
+        
+        <div class="intro-grid">
+          <div class="card-box">
+            <h3 style="margin-bottom: 0.8rem; font-weight: 800;">Objectiu i Proposta</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Aquest projecte desenvolupa un sistema interactiu format per un guant sensoritzat emissor i un braç articulat receptor. Mitjançant sensors de flexió, una unitat MPU6050 i comunicació Bluetooth, el braç reprodueix la posició i flexió de la mà humana en temps real.</p>
+            <div style="margin-top: 1.2rem;">
+              <span class="tech-tag">C/C++</span>
+              <span class="tech-tag">ESP32</span>
+              <span class="tech-tag">MPU6050</span>
+              <span class="tech-tag">FLEX SENSORS</span>
+              <span class="tech-tag">SERVO CONTROL</span>
+            </div>
+          </div>
+          <div class="intro-image-card">
+            <img src="Brazo1.jpg" alt="Prototip final del braç articulat" class="zoomable-img" onclick="openLightbox(this.src)">
+            <span class="image-caption">FIG 1.0 — Prototip final (Fes clic per ampliar en Lightbox).</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. HOTSPOTS & DISSENY CAD -->
+      <section id="hotspots-sec" class="project-section reveal">
+        <span class="mono-label">02 // INTERACTIVE HARDWARE</span>
+        <h2 class="section-title">
+          Punts d'Interès Interactius (Hotspots)
+          <button class="anchor-btn" onclick="copyAnchor('#hotspots-sec')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="card-box" style="margin-bottom: 2rem;">
+          <div class="hotspot-container">
+            <img src="Brazo1.jpg" alt="Guant i Braç Robòtic" class="hotspot-base-img">
+            
+            <!-- Hotspot 1 -->
+            <div class="hotspot" style="top: 35%; left: 45%;">
+              <div class="hotspot-btn">+</div>
+              <div class="hotspot-tooltip">
+                <strong>Sensors de Flexió Spectra Symbol</strong>
+                <p>Mesuren la curvatura dels dits (pins ADC34, ADC35).</p>
+              </div>
+            </div>
+
+            <!-- Hotspot 2 -->
+            <div class="hotspot" style="top: 60%; left: 70%;">
+              <div class="hotspot-btn">+</div>
+              <div class="hotspot-tooltip">
+                <strong>Servomotors MG996R</strong>
+                <p>Control de parell elevat per a les articulacions principals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-box">
+          <div class="cad-steps-nav">
+            <button class="cad-step-btn active" onclick="showCadStep(1)">v1.0 Inicial</button>
+            <button class="cad-step-btn" onclick="showCadStep(2)">v2.0 Reforç Base</button>
+            <button class="cad-step-btn" onclick="showCadStep(3)">v3.0 Integració Servos</button>
+          </div>
+          
+          <div class="cad-step-display">
+            <div class="cad-image">
+              <img id="cad-img" src="Brazo3.jpg" alt="Versió CAD" class="zoomable-img" onclick="openLightbox(this.src)">
+            </div>
+            <div class="cad-info">
+              <h3 id="cad-title" style="font-weight: 800; margin-bottom: 0.6rem;">Modelat CAD v1.0</h3>
+              <p id="cad-desc" style="color: var(--text-secondary); font-size: 0.95rem;">Primera versió del disseny estructural imprès en PLA. Es van identificar punts de fatiga a l'eix principal de rotació.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. COMPARADOR D'IMATGES (BEFORE / AFTER) -->
+      <section id="comparador" class="project-section reveal">
+        <span class="mono-label">03 // HARDWARE EVOLUTION</span>
+        <h2 class="section-title">
+          Comparador Prototip vs. PCB Final
+          <button class="anchor-btn" onclick="copyAnchor('#comparador')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="card-box">
+          <div class="image-comparison-slider">
+            <img src="Brazo3.jpg" alt="Prototip Breadboard" class="img-before">
+            <div class="img-after-wrapper">
+              <img src="Brazo4.jpg" alt="PCB Final Custom" class="img-after">
+            </div>
+            <input type="range" min="0" max="100" value="50" class="slider" oninput="moveComparisonSlider(this)">
+            <div class="slider-line"></div>
+            <div class="slider-button"></div>
+          </div>
+          <span class="image-caption" style="margin-top: 1rem;">Arrossega el lliscador per comparar el prototip en breadboard i la PCB dissenyada.</span>
+        </div>
+      </section>
+
+      <!-- 04. TELEMETRIA I GRÀFIQUES INTERACTIVES -->
+      <section id="telemetria" class="project-section reveal">
+        <span class="mono-label">04 // TELEMETRY & DATA</span>
+        <h2 class="section-title">
+          Telemetria en Temps Real (Chart.js)
+          <button class="anchor-btn" onclick="copyAnchor('#telemetria')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="card-box">
+          <canvas id="telemetryChart" height="120"></canvas>
+        </div>
+      </section>
+
+      <!-- 05. FIRMWARE I PESTAÑES DE CODI -->
+      <section id="codi" class="project-section reveal">
+        <span class="mono-label">05 // CODE & EMBEDDED C++</span>
+        <h2 class="section-title">
+          Codi del Firmware
+          <button class="anchor-btn" onclick="copyAnchor('#codi')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="code-tabs-container">
+          <div class="code-tabs-header">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-trans')">Transmitter.ino</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-recv')">Receiver.ino</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-telem')">Telemetry.h</button>
+          </div>
+          
+          <div id="tab-trans" class="tab-content active">
+            <div class="code-box-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">Copiar Codi</button>
+              <pre><code>// Transmitter.ino - Gant Emissor
+#include &lt;Wire.h&gt;
+#include &lt;MPU6050.h&gt;
+
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+  // Inicialització de sensors flex
+}
+
+void loop() {
+  int flexValue = analogRead(34);
+  Serial.println(flexValue);
+  delay(20);
+}</code></pre>
+            </div>
+          </div>
+
+          <div id="tab-recv" class="tab-content">
+            <div class="code-box-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">Copiar Codi</button>
+              <pre><code>// Receiver.ino - Braç Receptor
+#include &lt;Adafruit_PWMServoDriver.h&gt;
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+void setup() {
+  pwm.begin();
+  pwm.setPWMFreq(60);
+}
+
+void loop() {
+  // Rebre dades per Bluetooth i moure servomotors
+}</code></pre>
+            </div>
+          </div>
+
+          <div id="tab-telem" class="tab-content">
+            <div class="code-box-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">Copiar Codi</button>
+              <pre><code>// Telemetry.h - Estructura de Dades
+struct TelemetryData {
+  uint16_t flexSensors[5];
+  float pitch;
+  float roll;
+  uint32_t timestamp;
+};</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. TAULA BOM AMB FILTRE EN VIU -->
+      <section id="bom" class="project-section reveal">
+        <span class="mono-label">06 // BILL OF MATERIALS</span>
+        <h2 class="section-title">
+          Llista de Materials (BOM)
+          <button class="anchor-btn" onclick="copyAnchor('#bom')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="card-box">
+          <input type="text" id="bomSearch" class="bom-search-input" placeholder="🔍 Cerca components, protocols o funcions..." onkeyup="filterBOMTable()">
+          
+          <table class="bom-table" id="bomTable">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Funció</th>
+                <th>Protocol / Interfície</th>
+                <th>Qtt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ESP32 NodeMCU</td>
+                <td>Microcontrolador Principal</td>
+                <td>Wi-Fi / Bluetooth / ADC</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>MPU6050</td>
+                <td>Unitat IMU (Giroscopi / Acceleròmetre)</td>
+                <td>I2C</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Sensors Flex Spectra Symbol</td>
+                <td>Lectura de flexió dels dits</td>
+                <td>Analògic (ADC)</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>PCA9685</td>
+                <td>Controlador de Servos 16-Canals</td>
+                <td>I2C / PWM</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Servomotors MG996R</td>
+                <td>Actuació mecànica de potència</td>
+                <td>PWM</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 07. REPTES I SOLUCIONS -->
+      <section id="reptes" class="project-section reveal">
+        <span class="mono-label">07 // PROBLEM SOLVING</span>
+        <h2 class="section-title">
+          Reptes Tècnics i Solucions
+          <button class="anchor-btn" onclick="copyAnchor('#reptes')" title="Copiar enllaç">#</button>
+        </h2>
+
+        <div class="challenges-grid">
+          <div class="challenge-card">
+            <div>
+              <h4>Soroll en Sensors Flex</h4>
+              <p class="challenge-cause">Valors instables llegits pels pins ADC degut a interferències electromagnètiques.</p>
+            </div>
+            <div class="challenge-solution">
+              <strong>Solució:</strong> Filtre de mitjana mòbil per software i condensadors de desacoblament.
+            </div>
+          </div>
+
+          <div class="challenge-card">
+            <div>
+              <h4>Latència Bluetooth</h4>
+              <p class="challenge-cause">Retard perceptible en l'enviament de paquets de dades de posició.</p>
+            </div>
+            <div class="challenge-solution">
+              <strong>Solució:</strong> Optimització de la trama de dades i freqüència de refresc a 50Hz.
+            </div>
+          </div>
+
+          <div class="challenge-card">
+            <div>
+              <h4>Pics de Consum</h4>
+              <p class="challenge-cause">Reinicis de la placa de control quan es movien tots els servomotors alhora.</p>
+            </div>
+            <div class="challenge-solution">
+              <strong>Solució:</strong> Separació d'alimentació de potència (5V 5A) i lògica.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL LIGHTBOX AMB ZOOM I PANNING -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content" id="lightbox-container">
+      <img id="lightbox-img" src="" alt="Ampliació">
+    </div>
+    <div class="lightbox-controls">
+      <span>Roda del rató: Zoom | Arrossegar: Panning</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
